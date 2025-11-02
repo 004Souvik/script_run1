@@ -144,4 +144,5 @@ def web_app(df1:pd.DataFrame, df2:pd.DataFrame, leng:int):
 
     pls_met_df = pd.DataFrame(pls_met_dict, index=[str(i) for i in range(leng, len(x_tr.columns)+1, 1)])
 
-    return "Total_metrics.xlsx", pls_met_df
+    return pls_met_df
+
