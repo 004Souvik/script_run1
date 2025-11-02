@@ -61,21 +61,10 @@ run_button = st.button("🚀 Run Calculation")
 if run_button:
     if train_df is not None and test_df is not None:
         with st.spinner("🧮 Calculation going on... Please wait."):
-           total_file, pls_met = web_app(df1=train_df, df2=test_df, leng=int(user_input))
+           pls_met = web_app(df1=train_df, df2=test_df, leng=int(user_input))
 
         st.success("✅ Calculation Completed Successfully!")
         
-        # --- Download button 1: the Excel file generated inside web_app() ---
-        with open(total_file, "rb") as f:
-            excel_data1 = f.read()
-
-        st.download_button(
-            label="💾 Download Total Metrics Excel File",
-            data=excel_data1,
-            file_name="Total_metrics.xlsx",
-            mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-        )
-
         # --- Download button 2: the PLS metrics DataFrame ---
         output = BytesIO()
         with pd.ExcelWriter(output, engine="openpyxl") as writer:
@@ -91,4 +80,5 @@ if run_button:
     else:
 
         st.warning("⚠️ Please upload both Training and Test files before running the calculation.")
+
 
