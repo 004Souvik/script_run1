@@ -65,7 +65,7 @@ if run_button:
 
         st.success("✅ Calculation Completed Successfully!")
         
-        output = io.BytesIO()
+        output = BytesIO()
         with pd.ExcelWriter(output, engine="openpyxl") as writer:
             pls_met.to_excel(writer, sheet_name="total_pls")
         excel_data = output.getvalue()
@@ -77,4 +77,5 @@ if run_button:
             mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
         )
     else:
+
         st.warning("⚠️ Please upload both Training and Test files before running the calculation.")
